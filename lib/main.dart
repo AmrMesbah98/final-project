@@ -1,4 +1,4 @@
-import 'package:finalproject/presntation/view/splash/splash.dart';
+import 'package:finalproject/Features/presntation/view/splash/splash.dart';
 import 'package:flutter/material.dart';
 
 void main()

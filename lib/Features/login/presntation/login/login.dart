@@ -1,6 +1,8 @@
-import 'package:finalproject/utile/widget/csutomButton.dart';
-import 'package:finalproject/utile/widget/customTextFormField.dart';
+import 'package:finalproject/core/utile/widget/customTextFormField.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/utile/widget/csutomButton.dart';
+import '../../../Register/presntation/view/view_of_register.dart';
 
 class Login extends StatelessWidget {
    Login({super.key});
@@ -34,14 +36,29 @@ class Login extends StatelessWidget {
           const SizedBox(height:20),
           CustomBottom(
               name: "Login",
-              width: 150,
+              w: 150,
               borderRadius: 20,
-              height: 50,
+              h: 50,
               onPress: (){},
               colorButton: Colors.blue,
               colorText: Colors.black,
             sizeText: 25,
-          )
+          ),
+          SizedBox(height: 20),
+          CustomBottom(
+              name: "donot have account! signup",
+              w: 150,
+              borderRadius: 20,
+              h: 50,
+              onPress: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_){
+                  return RegisterScreen();
+                }));
+              },
+              colorButton: Colors.blue,
+              colorText: Colors.black,
+            sizeText: 25,
+          ),
         ],
       ),
     );

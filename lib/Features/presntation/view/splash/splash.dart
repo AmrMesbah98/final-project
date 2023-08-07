@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../login/login.dart';
+import '../../../login/presntation/login/login.dart';
+
 
 class Splash extends StatefulWidget {
   Splash({Key? key}) : super(key: key);
