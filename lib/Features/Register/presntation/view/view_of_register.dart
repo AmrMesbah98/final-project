@@ -1,6 +1,8 @@
-import 'package:finalproject/core/utile/widget/csutomButton.dart';
-import 'package:finalproject/core/utile/widget/customTextFormField.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../../core/widget/csutomButton.dart';
+import '../../../../core/widget/customTextFormField.dart';
 
 class RegisterScreen extends StatefulWidget {
    RegisterScreen({super.key});

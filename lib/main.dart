@@ -1,5 +1,6 @@
-import 'package:finalproject/Features/presntation/view/splash/splash.dart';
 import 'package:flutter/material.dart';
+
+import 'Features/Splash/Presntation/view/splash.dart';
 
 void main()
 {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Splash(),
     );
   }
