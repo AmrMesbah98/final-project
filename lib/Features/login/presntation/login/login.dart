@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widget/csutomButton.dart';
 import '../../../../core/widget/customTextFormField.dart';
+import '../../../Home/presntation/view/home.dart';
 import '../../../Register/presntation/view/view_of_register.dart';
 
 class Login extends StatelessWidget {
+
   Login({super.key});
 
   TextEditingController emailController = TextEditingController();
@@ -84,7 +86,11 @@ class Login extends StatelessWidget {
                 w: MediaQuery.of(context).size.width * .7,
                 borderRadius: 20,
                 h: 50,
-                onPress: () {},
+                onPress: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_){
+                    return const HomePage();
+                  }));
+                },
                 colorButton: Colors.blue,
                 colorText: Colors.black,
                 sizeText: 25,
