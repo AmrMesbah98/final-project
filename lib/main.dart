@@ -1,6 +1,6 @@
+import 'package:finalproject/Features/login/presntation/login/login.dart';
 import 'package:flutter/material.dart';
 
-import 'Features/Splash/Presntation/view/splash.dart';
 
 void main()
 {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: Login(),
     );
   }
 }
