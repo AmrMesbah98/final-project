@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
+import '../manger/get_courses_cubit.dart';
 import 'Widget/build_section.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,20 +13,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Container(
-            decoration: const BoxDecoration(
-              gradient:  LinearGradient(
-                  colors: [
-                    Color(0xFFb2b2ff),
-                    Color(0xFFffffff),
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-            ),
-        child: const Column(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Color(0xFFb2b2ff),
+                Color(0xFFffffff),
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp),
+        ),
+        child: Column(
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(10),
               child: Row(
                 children: [
@@ -41,22 +44,88 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            BuildSection(label: "Courses",),
-            BuildSection(label: "Projects"),
-            BuildSection(label: "Instructor"),
+            BlocBuilder<GetCoursesCubit, GetCoursesState>(
+              builder: (context, state) {
+                if (state is GetCoursesError) {
+                  return Text(state.errMessage);
+                } else if (state is GetCoursesSuccess) {
+                  return Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "courses",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 200,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.courses.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * .33,
+                                  height:
+                                      MediaQuery.of(context).size.height * .2,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xFFffb2b2),
+                                          Color(0xFFb2b2ff),
+                                        ],
+                                        begin: FractionalOffset(0.0, 0.0),
+                                        end: FractionalOffset(1.0, 0.0),
+                                        stops: [0.0, 1.0],
+                                        tileMode: TileMode.clamp),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: NetworkImage(
+                                            state.courses[index].images!),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .2,
+                                        fit: BoxFit.fill,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                      )
+                    ],
+                  );
+                } else {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      color: Colors.grey.shade300,
+                    ),
+                  );
+                }
+              },
+            )
           ],
         ),
       )),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
