@@ -35,5 +35,4 @@ class BuildSection extends StatelessWidget {
         )
       ],
     );
-  }
-}
+  }}
