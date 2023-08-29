@@ -1,0 +1,1 @@
+var base = "https://student.valuxapps.com/api/";

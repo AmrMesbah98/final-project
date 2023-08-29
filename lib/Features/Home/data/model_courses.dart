@@ -6,16 +6,18 @@ class CoursesModel
   String? nameInstructor;
   String? nameCourses;
   String? id;
+  String? description;
   String? images;
   String? price;
 
 
-  CoursesModel({ this.nameCourses,this.images,this.price,this.nameInstructor,this.id});
+  CoursesModel({ this.nameCourses,this.images,this.price,this.nameInstructor,this.id,this.description});
 
 
   CoursesModel.fromJson(QueryDocumentSnapshot<Map<String, dynamic>> json) {
     id = json.id;
     nameCourses = json.data()['nameCourses'];
+    description = json.data()['description'];
     nameInstructor = json.data()['nameInstructor'];
     images = json.data()['images'];
     price = json.data()['price'];
@@ -27,6 +29,7 @@ class CoursesModel
       'nameCourses': nameCourses,
       'nameInstructor': nameInstructor,
       'images': images,
+      'description': description,
       'price': price,
 
     };

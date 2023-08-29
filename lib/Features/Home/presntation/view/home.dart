@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../courses/presentation/view/courses_page.dart';
 import 'Widget/build_section.dart';
 
 class HomePage extends StatelessWidget {
@@ -73,35 +74,42 @@ class HomePage extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(10),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * .33,
-                                  height:
-                                      MediaQuery.of(context).size.height * .2,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient: const LinearGradient(
-                                        colors: [
-                                          Color(0xFFffb2b2),
-                                          Color(0xFFb2b2ff),
-                                        ],
-                                        begin: FractionalOffset(0.0, 0.0),
-                                        end: FractionalOffset(1.0, 0.0),
-                                        stops: [0.0, 1.0],
-                                        tileMode: TileMode.clamp),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Image(
-                                        image: NetworkImage(
-                                            state.courses[index].images!),
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .2,
-                                        fit: BoxFit.fill,
-                                      )
-                                    ],
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (_){
+                                      return CoursesDetails(coursesModel:state.courses[index] ,);
+                                    }));
+                                  },
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .33,
+                                    height:
+                                        MediaQuery.of(context).size.height * .2,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xFFffb2b2),
+                                            Color(0xFFb2b2ff),
+                                          ],
+                                          begin: FractionalOffset(0.0, 0.0),
+                                          end: FractionalOffset(1.0, 0.0),
+                                          stops: [0.0, 1.0],
+                                          tileMode: TileMode.clamp),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image(
+                                          image: NetworkImage(
+                                              state.courses[index].images!),
+                                          width: double.infinity,
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  .2,
+                                          fit: BoxFit.fill,
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
